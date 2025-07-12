@@ -10,7 +10,7 @@
 <div class="example-wrapper">
     <h1> All products </h1>
     {% for product in products %}
-        <a href="{{path('', {id: product.id}) }}">
+        <a href="{{path('product_show', {id: product.id}) }}">
             <div class="product-card">
                 <img src="{{ asset('upload/products/' ~ product.image) }}" alt="{{ product.name }}" />
                 <h2> {{ product.name }} </h2>

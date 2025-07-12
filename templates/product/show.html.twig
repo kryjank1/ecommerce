@@ -4,10 +4,12 @@
 
 {% block body %}
   <h1>{{ product.name }}</h1>
-  <img src="{{ asset('uploads/products/' ~ product.imageFilename) }}" alt="{{ product.name }}">
+  <img src="{{ asset('uploads/products/' ~ product.image) }}" alt="{{ product.name }}">
   <p>{{ product.description }}</p>
   <p><strong>Price: {{ product.price }} </strong></p>
-
-  <a href="{{ path('cart_add', { id: product.id }) }}" class="btn">Add to cart</a>
-  <a href="{{ path('app_shop') }}">← Back to shop</a>
+  {{ form_start(addToCartForm) }}
+    {{ form_row(addToCartForm.quantity) }}
+    <button type="submit" class="btn btn-primary">Add to Cart</button>
+  {{ form_end(addToCartForm) }}
+  <a href="{{ path('app_shop') }}"> <- Back to shop</a>
 {% endblock %}
