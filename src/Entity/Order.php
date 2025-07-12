@@ -50,7 +50,7 @@ class Order
     private Collection $orderItems;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    private ?User $userId = null;
+    private ?User $User_id = null;
 
     public function __construct()
     {
@@ -202,12 +202,12 @@ class Order
 
     public function getUserId(): ?User
     {
-        return $this->userId;
+        return $this->User_id;
     }
 
-    public function setUserId(?User $userId): static
+    public function setUserId(?User $User_id): static
     {
-        $this->userId = $userId;
+        $this->User_id = $User_id;
 
         return $this;
     }
