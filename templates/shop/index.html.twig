@@ -38,7 +38,7 @@
             <div class="product-card">
                 <img src="{{ asset('upload/products/' ~ product.image) }}" alt="{{ product.name }}" />
                 <h2> {{ product.name }} </h2>
-                <p> {{ product.price }} </p>
+                <p> {{ product.price / 100 }} </p>
             </div>
         </a>
     {% else %}

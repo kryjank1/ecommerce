@@ -15,12 +15,12 @@
         <ul>
             {% for item in cartItems %}
                 <li>
-                    {{ item.product.name }} - Quantity {{ item.quantity }} - Price {{ item.product.price }}
+                    {{ item.product.name }} - Quantity {{ item.quantity }} - Price {{ item.product.price / 100}}
                     <a href="{{path('cart_remove', {id: item.product.id}) }}"> Remove item</a>
                 </li>
             {% endfor %}
         </ul>
-        <p> Total:  <strong> {{ total }}  </strong> </p>
+        <p> Total:  <strong> {{ total / 100 }}  </strong> </p>
         <a href="{{ path('cart_clear') }}"> Clear cart</a>
         <a href="{{ path('app_checkout') }}" class="btn btn-success mt-4">Proceed to Checkout</a>
     {% endif %}
