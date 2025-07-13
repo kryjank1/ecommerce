@@ -9,6 +9,30 @@
 </style>
 <div class="example-wrapper">
     <h1> All products </h1>
+    <h2> filter by: </h2>
+    <form method="get" action="{{ path('app_shop') }}" class="mb-4">
+        <label for="category-filter">Category:</label>
+        <select name="category" id="category-filter">
+            <option value="0">All Categories</option>
+            {% for cat in categories %}
+                <option value="{{ cat.id }}" {% if currentCategory == cat.id %}selected{% endif %}>
+            {{ cat.name }}
+            </option>
+      {% endfor %}
+    </select>
+
+    <label for="tag-filter"> or Tag:</label>
+    <select name="tag" id="tag-filter">
+      <option value="0">All Tags</option>
+      {% for tag in tags %}
+        <option value="{{ tag.id }}" {% if currentTag == tag.id %}selected{% endif %}>
+          {{ tag.name }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <button type="submit">Apply filters</button>
+  </form>
     {% for product in products %}
         <a href="{{path('product_show', {id: product.id}) }}">
             <div class="product-card">

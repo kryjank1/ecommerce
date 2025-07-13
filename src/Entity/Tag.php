@@ -10,15 +10,25 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
 {
+    /**
+     * The unique identifier for this tag.
+     *
+     * @var int|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    /**
+     * The display name of the tag.
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-
     /**
+     * Products associated with this tag.
+     *
      * @var Collection<int, Product>
      */
     #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'tags')]
@@ -28,7 +38,11 @@ class Tag
     {
         $this->productId = new ArrayCollection();
     }
-
+    /**
+     * String representation of the tag.
+     *
+     * @return string
+     */
     public function __toString(): string
     {
         return $this->name ?? "Unnamed tag";

@@ -49,7 +49,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->orders = new ArrayCollection();
     }
-
     public function __toString(): string
     {
         return $this->email ?? "Unknown email";
@@ -59,7 +58,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->id;
     }
-
+    /**
+     * Gets the user's email.
+     */
     public function getEmail(): ?string
     {
         return $this->email;

@@ -8,24 +8,51 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: OrderItemRepository::class)]
 class OrderItem
 {
+    /**
+     * The unique identifier for this order item.
+     *
+     * @var int|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    /**
+     * Quantity of the product in this order item.
+     *
+     * @var int|null
+     */
     #[ORM\Column]
     private ?int $qunatity = null;
-
+    /**
+     * Price of the product at the time of purchase (in cents).
+     *
+     * @var int|null
+     */
     #[ORM\Column]
     private ?int $priceAtPurchase = null;
 
+    /**
+     * The order this item belongs to.
+     *
+     * @var Order|null
+     */
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Order $orders = null;
 
+    /**
+     * The product referenced by this order item.
+     *
+     * @var Product|null
+     */
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
     private ?Product $productId = null;
-
+    /**
+     * String representation of the order item.
+     *
+     * @return string
+     */
     public function __toString(): string
     {
         return $this->id . " " . $this->productId . "<->" . $this->orders;

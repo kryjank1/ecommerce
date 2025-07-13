@@ -6,49 +6,98 @@ use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
 class Order
 {
+    /**
+     * The unique identifier for the order.
+     *
+     * @var int|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    /**
+     * Timestamp when the order was created.
+     *
+     * @var \DateTimeImmutable|null
+     */
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
-
+    /**
+     * Current status of the order (e.g. "pending", "shipped").
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Status cannot be blank.")]
     private ?string $status = null;
-
+    /**
+     * First name of the customer who placed the order.
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-
+    /**
+     * Last name of the customer who placed the order.
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
     private ?string $surname = null;
-
+    /**
+     * Street address for order delivery.
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
     private ?string $street = null;
-
+    /**
+     * City for order delivery.
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
     private ?string $city = null;
-
+    /**
+     * Postal code for order delivery.
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
     private ?string $postalCode = null;
-
+    /**
+     * Country for order delivery.
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
     private ?string $country = null;
-
+    /**
+     * Contact phone number for the order.
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 25)]
     private ?string $phone = null;
-
     /**
+     * Items included in this order.
+     *
      * @var Collection<int, OrderItem>
      */
     #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'orders', orphanRemoval: true)]
     private Collection $orderItems;
-
+    /**
+     * The user who placed this order.
+     *
+     * @var User|null
+     */
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?User $User_id = null;
 
@@ -56,7 +105,11 @@ class Order
     {
         $this->orderItems = new ArrayCollection();
     }
-
+    /**
+     * String representation of the order.
+     *
+     * @return string
+     */
     public function __toString(): string
     {
         return $this->id;

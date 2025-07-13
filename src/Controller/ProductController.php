@@ -13,6 +13,17 @@ use Twig\Environment;
 
 final class ProductController extends AbstractController
 {
+    /**
+     * Show a single product page with add-to-cart form.
+     *
+     * @param int $id Product ID
+     * @param Environment $twig
+     * @param ProductRepository $productRepository Repository of products
+     * @param Request $request
+     * @param CartService $cartService for managing the shopping cart
+     *
+     * @return Response
+     */
     #[Route('/product/{id}', name: 'product_show')]
     public function show(int $id, Environment $twig, ProductRepository $productRepository, Request $request, CartService $cartService): Response
     {
@@ -31,12 +42,5 @@ final class ProductController extends AbstractController
             'product' => $product,
             'addToCartForm' => $form->createView()
         ]));
-    }
-    #[Route('/product', name: 'app_product')]
-    public function index(): Response
-    {
-        return $this->render('product/index.html.twig', [
-            'controller_name' => 'ProductController',
-        ]);
     }
 }

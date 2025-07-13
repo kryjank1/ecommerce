@@ -15,14 +15,14 @@
             <nav>
                 <a href="{{ path('app_shop') }}">Home</a>
                 <a href="{{ path('app_cart') }}">Cart{% if cartItemCount is defined %} ({{ cartItemCount }}){% endif %}</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('admin') }}"> Admin </a>
+                {% endif %}
                 {% if app.user %}
                     <p> Logged in as {{ app.user.email }}  </p>
                     <a href="{{ path('app_logout') }}"> Logout </a>
                 {% else %}
                     <a href="{{ path('app_login') }}"> Login </a>
-                {% endif %}
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a class="nav-link" href="{{ path('admin') }}"> Admin </a>
                 {% endif %}
             </nav>
         </header>

@@ -17,6 +17,20 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class CheckoutController extends AbstractController
 {
+    /**
+     * Display and process the checkout form.
+     *
+     * Creates an Order and associated OrderItems, updates product stock :w
+     * clears the cart, and redirects to the cart overview.
+     *
+     * @param Request $request
+     * @param CartService $cartService Service to manage cart contents
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     *
+     * @throws Exception If any product in the cart is out of stock
+     */
     #[Route('/checkout', name: 'app_checkout')]
     public function checkout(Request $request, CartService $cartService, EntityManagerInterface $entityManager): Response
     {
