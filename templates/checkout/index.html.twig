@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CheckoutController!{% endblock %}
+{% block title %} Checkout {% endblock %}
 
 {% block body %}
 <style>
@@ -8,13 +8,10 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Checkout</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/ImSad/WTW/ecommerce/src/Controller/CheckoutController.php</code></li>
-        <li>Your template at <code>/home/ImSad/WTW/ecommerce/templates/checkout/index.html.twig</code></li>
-    </ul>
-</div>
+    {{ form_start(checkoutForm) }}
+        {{ form_widget(checkoutForm) }}
+        <button class="btn btn-primary">Submit Order</button>
+    {{ form_end(checkoutForm) }}
 {% endblock %}

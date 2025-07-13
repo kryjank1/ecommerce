@@ -26,6 +26,11 @@ class OrderItem
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
     private ?Product $productId = null;
 
+    public function __toString(): string
+    {
+        return $this->id . " " . $this->productId . "<->" . $this->orders;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

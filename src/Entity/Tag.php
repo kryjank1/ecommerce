@@ -21,7 +21,7 @@ class Tag
     /**
      * @var Collection<int, Product>
      */
-    #[ORM\ManyToMany(targetEntity: Product::class, inversedBy: 'tags')]
+    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'tags')]
     private Collection $productId;
 
     public function __construct()
@@ -29,6 +29,10 @@ class Tag
         $this->productId = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->name ?? "Unnamed tag";
+    }
     public function getId(): ?int
     {
         return $this->id;

@@ -21,6 +21,9 @@
                 {% else %}
                     <a href="{{ path('app_login') }}"> Login </a>
                 {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="nav-link" href="{{ path('admin') }}"> Admin </a>
+                {% endif %}
             </nav>
         </header>
         <main>

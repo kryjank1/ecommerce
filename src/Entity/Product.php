@@ -40,11 +40,13 @@ class Product
     /**
      * @var Collection<int, Tag>
      */
-    #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'productId')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'productId')]
+    #[ORM\JoinTable(name: 'product_tag')]
     private Collection $tags;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
 
     public function __construct()
     {
@@ -52,6 +54,10 @@ class Product
         $this->tags = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->name ?? "Unnamed Product";
+    }
     public function getId(): ?int
     {
         return $this->id;
