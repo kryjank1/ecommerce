@@ -20,7 +20,6 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Assert\NotBlank(message: "Product id cannot be blank.")]
     private ?int $id = null;
     /**
      * The name of the product.

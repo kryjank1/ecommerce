@@ -35,7 +35,6 @@ class Order
      * @var string|null
      */
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Status cannot be blank.")]
     private ?string $status = null;
     /**
      * First name of the customer who placed the order.
