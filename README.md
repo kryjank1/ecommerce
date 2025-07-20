@@ -14,7 +14,7 @@ Clone the repo
 
 install dependencies via composer install
 
-copy .env.example to .env.loczl
+copy .env.example to .env.local
 
 run docker compose up
  
