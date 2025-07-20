@@ -23,7 +23,6 @@ class OrderCrudController extends AbstractCrudController
         return [
             AssociationField::new('User_id'),
             TextField::new('status'),
-            DateTimeField::new('createdAt')->hideOnForm(),
 
             TextField::new('name'),
             TextField::new('surname'),
